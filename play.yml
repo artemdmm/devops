@@ -1,0 +1,25 @@
+---
+- hosts: ansible-servers
+  become:
+    true
+  become_method:
+    su
+  become_user:
+    root
+  remote_user:
+    vboxuser
+  roles:
+   - epel
+   - nginx
+
+- hosts: nginx-servers
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    vboxuser
+  roles:
+   - nginx

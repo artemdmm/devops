@@ -1,0 +1,9 @@
+---
+- name: Install Nginx Web Server on Ubuntu
+  yum:
+    name=nginx
+    state=latest
+  when:
+    ansible_os_family == "Ubuntu"
+  notify:
+    - nginx systemd

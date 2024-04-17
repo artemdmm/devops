@@ -1,0 +1,21 @@
+---
+- name: Setup
+  hosts: servers
+  become: true
+
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: copy index
+      copy:
+        src: /home/vboxuser/Documents/index.html
+        dest: /var/www/html
+        mode: "0644"
+
+    - name: reboot nginx
+      systemd:
+        service: nginx
+        state: restarted
